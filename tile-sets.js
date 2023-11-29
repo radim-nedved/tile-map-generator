@@ -5,15 +5,12 @@ const set1 = [
     ["white", "white", "white"],
   ],
   [
-    ["white", "black", "white"],
-    ["black", "black", "white"],
     ["white", "white", "white"],
-  ],
-  [
-    ["black", "white", "white"],
-    ["black", "white", "white"],
-    ["black", "black", "black"],
+    ["black", "black", "white"],
+    ["white", "black", "white"],
   ],
 ];
 
-export { set1 };
+const tileSets = [set1];
+
+export { tileSets };

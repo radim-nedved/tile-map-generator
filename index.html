@@ -4,9 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tile pattern generator</title>
+
+    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <canvas></canvas>
-    <img id="grid" src="" alt="" />
+    <canvas id="canvas"></canvas>
+    <img id="grid-img" src="" alt="" />
+    <div>
+      <select name="tileset" id="tileset-select"></select>
+      <button id="generate-button">Generate</button>
+    </div>
   </body>
 </html>

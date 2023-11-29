@@ -1,31 +1,50 @@
-import { set1 } from "./tile-sets.js";
+import { tileSets } from "./tile-sets.js";
 
-let tileSet = set1;
+let tileSet;
 let gridWidth = 10;
 let tileSize = 30;
 let grid = [];
 
-let rotatedTiles = [];
-for (let i = 0; i < tileSet.length; i++) {
-  let tile = tileSet[i];
-  const tileWidth = tile.length;
+const tilesetSelect = document.getElementById("tileset-select");
+const generateButton = document.getElementById("generate-button");
 
-  for (let j = 0; j < tileWidth; j++) {
-    tile = rotateTile(tile);
-    rotatedTiles.push(tile);
+tileSets.forEach((tileSet, index) => {
+  let option = document.createElement("option");
+  option.value = index;
+  option.textContent = `Tileset ${index + 1}`;
+  tilesetSelect.appendChild(option);
+});
+
+generateButton.addEventListener("click", () => {
+  tileSet = tileSets[tilesetSelect.value];
+  generate();
+});
+
+function generate() {
+  let rotatedTiles = [];
+  for (let i = 0; i < tileSet.length; i++) {
+    let tile = tileSet[i];
+    const tileWidth = tile.length;
+
+    for (let j = 0; j < tileWidth; j++) {
+      tile = rotateTile(tile);
+      rotatedTiles.push(tile);
+    }
   }
-}
-tileSet = [...tileSet, ...rotatedTiles];
+  tileSet = [...tileSet, ...rotatedTiles];
 
-for (let i = 0; i < gridWidth; i++) {
-  grid.push([]);
-  for (let j = 0; j < gridWidth; j++) {
-    grid[i].push([]);
+  grid = [];
+
+  for (let i = 0; i < gridWidth; i++) {
+    grid.push([]);
+    for (let j = 0; j < gridWidth; j++) {
+      grid[i].push([]);
+    }
   }
-}
 
-placeTile(tileSet, 0, 0, gridWidth);
-drawGrid();
+  placeTile(tileSet, 0, 0, gridWidth);
+  drawGrid();
+}
 
 function placeTile(tileSet, x, y, width) {
   if (y == width) {
