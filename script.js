@@ -5,16 +5,52 @@ let gridWidth = 10;
 let tileSize = 30;
 let grid = [];
 
+let rotatedTiles = [];
+for (let i = 0; i < tileSet.length; i++) {
+  let tile = tileSet[i];
+  const tileWidth = tile.length;
+
+  for (let j = 0; j < tileWidth; j++) {
+    tile = rotateTile(tile);
+    rotatedTiles.push(tile);
+  }
+}
+tileSet = [...tileSet, ...rotatedTiles];
+
 for (let i = 0; i < gridWidth; i++) {
   grid.push([]);
   for (let j = 0; j < gridWidth; j++) {
-    if (isTileValid(tileSet[0], j, i, tileSet[0].length)) {
-      grid[i].push(tileSet[0]);
-    }
+    grid[i].push([]);
   }
 }
 
+placeTile(tileSet, 0, 0, gridWidth);
 drawGrid();
+
+function placeTile(tileSet, x, y, width) {
+  if (y == width) {
+    return true;
+  }
+
+  let newX = x + 1 < width ? x + 1 : 0;
+  let newY = x + 1 < width ? y : y + 1;
+
+  const tiles = tileSet.slice();
+  shuffleArray(tiles);
+
+  for (const tile of tiles) {
+    if (isTileValid(tile, x, y, 3)) {
+      grid[y][x] = tile;
+      if (placeTile(tileSet, newX, newY, width)) {
+        return true;
+      }
+    }
+
+    grid[y][x] = null;
+  }
+
+  return false;
+}
 
 function isTileValid(tile, x, y, width) {
   if (y > 0) {
@@ -44,6 +80,15 @@ function isTileValid(tile, x, y, width) {
   return true;
 }
 
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}
+
 function drawGrid() {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -70,4 +115,18 @@ function drawGrid() {
   }
 
   document.getElementById("grid-img").src = canvas.toDataURL();
+}
+
+function rotateTile(tile) {
+  const tileWidth = tile.length;
+  const newTile = [];
+
+  for (let i = 0; i < tileWidth; i++) {
+    newTile.push([]);
+    for (let j = 0; j < tileWidth; j++) {
+      newTile[i].push(tile[tileWidth - j - 1][i]);
+    }
+  }
+
+  return newTile;
 }
