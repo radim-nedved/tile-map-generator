@@ -1,4 +1,4 @@
-function generate(grid, tileSet, gridWidth, tileSize) {
+function generate(grid, tileSet, gridWidth) {
   let rotatedTiles = [];
   for (let i = 0; i < tileSet.length; i++) {
     let tile = tileSet[i];
@@ -20,11 +20,11 @@ function generate(grid, tileSet, gridWidth, tileSize) {
     }
   }
 
-  placeTile(tileSet, 0, 0, gridWidth);
-  drawGrid(tileSize);
+  placeTile(grid, tileSet, 0, 0, gridWidth);
+  return grid;
 }
 
-function placeTile(tileSet, x, y, width) {
+function placeTile(grid, tileSet, x, y, width) {
   if (y == width) {
     return true;
   }
@@ -36,20 +36,21 @@ function placeTile(tileSet, x, y, width) {
   shuffleArray(tiles);
 
   for (const tile of tiles) {
-    if (isTileValid(tile, x, y, 3)) {
+    if (isTileValid(grid, tile, x, y, 3)) {
       grid[y][x] = tile;
-      if (placeTile(tileSet, newX, newY, width)) {
+      if (placeTile(grid, tileSet, newX, newY, width)) {
         return true;
       }
     }
 
     grid[y][x] = null;
   }
+  console.log(tileSet);
 
   return false;
 }
 
-function isTileValid(tile, x, y, width) {
+function isTileValid(grid, tile, x, y, width) {
   if (y > 0) {
     const top = grid[y - 1][x];
 
@@ -84,34 +85,6 @@ function shuffleArray(array) {
     array[i] = array[j];
     array[j] = temp;
   }
-}
-
-function drawGrid(tileSize) {
-  const canvas = document.getElementById("canvas");
-  const ctx = canvas.getContext("2d");
-
-  const tileWidth = grid[0][0].length;
-
-  canvas.width = gridWidth * tileSize;
-  canvas.height = gridWidth * tileSize;
-
-  for (let i = 0; i < gridWidth; i++) {
-    for (let j = 0; j < gridWidth; j++) {
-      for (let k = 0; k < tileWidth; k++) {
-        for (let l = 0; l < tileWidth; l++) {
-          ctx.fillStyle = grid[i][j][k][l];
-          ctx.fillRect(
-            j * tileSize + (l * tileSize) / tileWidth,
-            i * tileSize + (k * tileSize) / tileWidth,
-            tileSize / tileWidth,
-            tileSize / tileWidth
-          );
-        }
-      }
-    }
-  }
-
-  document.getElementById("grid-img").src = canvas.toDataURL();
 }
 
 function rotateTile(tile) {
