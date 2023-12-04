@@ -9,11 +9,22 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <img id="grid-img" src="" alt="" />
-    <div>
-      <select name="tileset" id="tileset-select"></select>
-      <button id="generate-button">Generate</button>
+    <div id="generator">
+      <canvas id="canvas"></canvas>
+      <img id="grid-img" src="" alt="" />
+      <div id="controls">
+        <div class="form-control">
+          <label for="tileset-select">Tileset: </label>
+          <select name="tileset" id="tileset-select"></select>
+        </div>
+        <div class="form-control">
+          <label for="grid-width">Grid size: </label>
+          <input id="grid-width" type="range" min="10" max="70" value="40" />
+        </div>
+        <div class="form-control">
+          <button id="generate-button">Generate</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>

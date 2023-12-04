@@ -1,16 +1,47 @@
 const set1 = [
   [
-    ["white", "white", "white"],
     ["black", "black", "black"],
-    ["white", "white", "white"],
+    ["blue", "blue", "blue"],
+    ["black", "black", "black"],
   ],
   [
-    ["white", "white", "white"],
-    ["black", "black", "white"],
-    ["white", "black", "white"],
+    ["black", "black", "black"],
+    ["blue", "blue", "black"],
+    ["black", "blue", "black"],
   ],
 ];
 
-const tileSets = [set1];
+const set2 = [
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+  ],
+  [
+    ["green", "yellow", "blue"],
+    ["green", "yellow", "yellow"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["blue", "yellow", "green"],
+    ["blue", "yellow", "yellow"],
+    ["blue", "blue", "blue"],
+  ],
+];
+
+const set3 = [
+  [
+    ["green", "green", "blue"],
+    ["green", "green", "blue"],
+    ["red", "red", "red"],
+  ],
+];
+
+const tileSets = [set1, set2, set3];
 
 export { tileSets };

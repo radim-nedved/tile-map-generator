@@ -1,12 +1,11 @@
 import { tileSets } from "./tile-sets.js";
 import { generate } from "./grid-generation.js";
 
-let tileSet;
-let gridWidth = 10;
 let tileSize = 30;
 let grid = [];
 
 const tilesetSelect = document.getElementById("tileset-select");
+const gridWidthInput = document.getElementById("grid-width");
 const generateButton = document.getElementById("generate-button");
 
 tileSets.forEach((tileSet, index) => {
@@ -17,12 +16,13 @@ tileSets.forEach((tileSet, index) => {
 });
 
 generateButton.addEventListener("click", () => {
-  tileSet = tileSets[tilesetSelect.value];
-  grid = generate(grid, tileSet, gridWidth, tileSize);
-  drawGrid(tileSize);
+  let tileSet = tileSets[tilesetSelect.value];
+  let gridWidth = gridWidthInput.value;
+  grid = generate(tileSet, gridWidth, tileSize);
+  drawGrid(gridWidth, tileSize);
 });
 
-function drawGrid(tileSize) {
+function drawGrid(gridWidth, tileSize) {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 

@@ -1,30 +1,28 @@
-function generate(grid, tileSet, gridWidth) {
+function generate(tileSet, gridWidth) {
   let rotatedTiles = [];
   for (let i = 0; i < tileSet.length; i++) {
     let tile = tileSet[i];
-    const tileWidth = tile.length;
 
-    for (let j = 0; j < tileWidth; j++) {
+    for (let j = 0; j < 3; j++) {
       tile = rotateTile(tile);
       rotatedTiles.push(tile);
     }
   }
   tileSet = [...tileSet, ...rotatedTiles];
 
-  grid = [];
-
+  let grid = [];
   for (let i = 0; i < gridWidth; i++) {
     grid.push([]);
-    for (let j = 0; j < gridWidth; j++) {
-      grid[i].push([]);
-    }
   }
 
   placeTile(grid, tileSet, 0, 0, gridWidth);
   return grid;
 }
 
-function placeTile(grid, tileSet, x, y, width) {
+async function placeTile(grid, tileSet, x, y, width) {
+  //await delay(1);
+  //drawGrid(grid, 30, 50);
+
   if (y == width) {
     return true;
   }
@@ -38,14 +36,12 @@ function placeTile(grid, tileSet, x, y, width) {
   for (const tile of tiles) {
     if (isTileValid(grid, tile, x, y, 3)) {
       grid[y][x] = tile;
-      if (placeTile(grid, tileSet, newX, newY, width)) {
+      if (await placeTile(grid, tileSet, newX, newY, width)) {
         return true;
       }
     }
-
     grid[y][x] = null;
   }
-  console.log(tileSet);
 
   return false;
 }
@@ -99,6 +95,42 @@ function rotateTile(tile) {
   }
 
   return newTile;
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function drawGrid(grid, tileSize, gridWidth) {
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  const tileWidth = 3;
+
+  canvas.width = gridWidth * tileSize;
+  canvas.height = gridWidth * tileSize;
+
+  for (let i = 0; i < gridWidth; i++) {
+    for (let j = 0; j < gridWidth; j++) {
+      for (let k = 0; k < tileWidth; k++) {
+        for (let l = 0; l < tileWidth; l++) {
+          if (grid[i][j] && grid[i][j]) {
+            ctx.fillStyle = grid[i][j][k][l];
+          } else {
+            ctx.fillStyle = "white";
+          }
+          ctx.fillRect(
+            j * tileSize + (l * tileSize) / tileWidth,
+            i * tileSize + (k * tileSize) / tileWidth,
+            tileSize / tileWidth,
+            tileSize / tileWidth
+          );
+        }
+      }
+    }
+  }
+
+  document.getElementById("grid-img").src = canvas.toDataURL();
 }
 
 export { generate };
