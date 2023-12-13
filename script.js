@@ -1,11 +1,12 @@
-import { tileSets } from "./tile-sets.js";
+import { tileSets, getRotations } from "./tile-sets.js";
 import { generate } from "./grid-generation.js";
 
-let tileSize = 30;
+const TILE_SIZE = 30;
 let grid = [];
 
 const tilesetSelect = document.getElementById("tileset-select");
 const gridWidthInput = document.getElementById("grid-width");
+const rotationsInput = document.getElementById("include-rotations");
 const generateButton = document.getElementById("generate-button");
 
 tileSets.forEach((tileSet, index) => {
@@ -15,21 +16,50 @@ tileSets.forEach((tileSet, index) => {
   tilesetSelect.appendChild(option);
 });
 
-generateButton.addEventListener("click", () => {
-  let tileSet = tileSets[tilesetSelect.value];
-  let gridWidth = gridWidthInput.value;
-  grid = generate(tileSet, gridWidth, tileSize);
-  drawGrid(gridWidth, tileSize);
+let tileSet = tileSets[tilesetSelect.value].slice();
+
+if (rotationsInput.checked) {
+  tileSet = tileSet.concat(getRotations(tileSet));
+}
+
+drawTileset(tileSet);
+
+tilesetSelect.addEventListener("change", () => {
+  tileSet = tileSets[tilesetSelect.value].slice();
+
+  if (rotationsInput.checked) {
+    tileSet = tileSet.concat(getRotations(tileSet));
+  } else {
+    tileSet = tileSets[tilesetSelect.value].slice();
+  }
+
+  drawTileset(tileSet);
 });
 
-function drawGrid(gridWidth, tileSize) {
+rotationsInput.addEventListener("change", () => {
+  if (rotationsInput.checked) {
+    tileSet = tileSet.concat(getRotations(tileSet));
+  } else {
+    tileSet = tileSets[tilesetSelect.value].slice();
+  }
+
+  drawTileset(tileSet);
+});
+
+generateButton.addEventListener("click", () => {
+  let gridWidth = gridWidthInput.value;
+  grid = generate(tileSet, gridWidth);
+  drawGrid(gridWidth, TILE_SIZE);
+});
+
+function drawGrid(gridWidth, TILE_SIZE) {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
   const tileWidth = grid[0][0].length;
 
-  canvas.width = gridWidth * tileSize;
-  canvas.height = gridWidth * tileSize;
+  canvas.width = gridWidth * TILE_SIZE;
+  canvas.height = gridWidth * TILE_SIZE;
 
   for (let i = 0; i < gridWidth; i++) {
     for (let j = 0; j < gridWidth; j++) {
@@ -37,10 +67,10 @@ function drawGrid(gridWidth, tileSize) {
         for (let l = 0; l < tileWidth; l++) {
           ctx.fillStyle = grid[i][j][k][l];
           ctx.fillRect(
-            j * tileSize + (l * tileSize) / tileWidth,
-            i * tileSize + (k * tileSize) / tileWidth,
-            tileSize / tileWidth,
-            tileSize / tileWidth
+            j * TILE_SIZE + (l * TILE_SIZE) / tileWidth,
+            i * TILE_SIZE + (k * TILE_SIZE) / tileWidth,
+            TILE_SIZE / tileWidth,
+            TILE_SIZE / tileWidth
           );
         }
       }
@@ -48,4 +78,33 @@ function drawGrid(gridWidth, tileSize) {
   }
 
   document.getElementById("grid-img").src = canvas.toDataURL();
+}
+
+function drawTileset() {
+  const tilesContainer = document.getElementById("tiles");
+  while (tilesContainer.firstChild) {
+    tilesContainer.removeChild(tilesContainer.firstChild);
+  }
+
+  for (const tile of tileSet) {
+    const tileCanvas = document.createElement("canvas");
+    tileCanvas.classList.add("tile-canvas");
+    tilesContainer.appendChild(tileCanvas);
+
+    const ctx = tileCanvas.getContext("2d");
+    const tileWidth = tile[0].length;
+    tileCanvas.width = TILE_SIZE;
+    tileCanvas.height = TILE_SIZE;
+    for (let i = 0; i < tileWidth; i++) {
+      for (let j = 0; j < tileWidth; j++) {
+        ctx.fillStyle = tile[i][j];
+        ctx.fillRect(
+          (j * TILE_SIZE) / tileWidth,
+          (i * TILE_SIZE) / tileWidth,
+          TILE_SIZE / tileWidth,
+          TILE_SIZE / tileWidth
+        );
+      }
+    }
+  }
 }

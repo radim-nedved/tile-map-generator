@@ -19,12 +19,20 @@
         </div>
         <div class="form-control">
           <label for="grid-width">Grid size: </label>
-          <input id="grid-width" type="range" min="10" max="70" value="40" />
+          <input id="grid-width" type="range" min="5" max="70" value="40" />
+        </div>
+        <div class="form-control">
+          <label for="grid-width">Include rotations: </label>
+          <input id="include-rotations" type="checkbox" checked="true" />
         </div>
         <div class="form-control">
           <button id="generate-button">Generate</button>
         </div>
       </div>
+    </div>
+    <div id="tileset">
+      <h2>Tileset:</h2>
+      <div id="tiles"></div>
     </div>
   </body>
 </html>
