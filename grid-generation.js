@@ -27,7 +27,7 @@ function placeTile(grid, tileSet, x, y) {
   for (const tile of tiles) {
     if (isTileValid(grid, tile, x, y, 3)) {
       grid[y][x] = tile;
-      if (placeTile(grid, tileSet, newX, newY, gridWidth)) {
+      if (placeTile(grid, tileSet, newX, newY)) {
         return true;
       }
     }
