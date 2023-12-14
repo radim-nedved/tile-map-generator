@@ -1,4 +1,6 @@
 body {
+    font-family: sans-serif;
+
     display: flex;
     justify-content: center;
     gap: 2rem;
@@ -10,20 +12,24 @@ body {
     background-color: lightgray;
     gap: 1rem;
     width: fit-content;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 #tileset {
     padding: 20px;
     background-color: lightgray;
     gap: 1rem;
-    width: 15%;
+    width: 30%;
+    border-radius: 8px;
 }
 
 #tiles {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
 }
 
 #controls {
@@ -33,7 +39,6 @@ body {
     padding: 20px;
     background-color: #f4f4f4;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-control {
@@ -96,4 +101,8 @@ body {
 
 #canvas {
     display: none;
+}
+
+label {
+    white-space: nowrap;
 }

@@ -6,7 +6,6 @@ let grid = [];
 
 const tilesetSelect = document.getElementById("tileset-select");
 const gridWidthInput = document.getElementById("grid-width");
-const rotationsInput = document.getElementById("include-rotations");
 const generateButton = document.getElementById("generate-button");
 
 tileSets.forEach((tileSet, index) => {
@@ -17,32 +16,13 @@ tileSets.forEach((tileSet, index) => {
 });
 
 let tileSet = tileSets[tilesetSelect.value].slice();
-
-if (rotationsInput.checked) {
-  tileSet = tileSet.concat(getRotations(tileSet));
-}
+tileSet = tileSet.concat(getRotations(tileSet));
 
 drawTileset(tileSet);
 
 tilesetSelect.addEventListener("change", () => {
   tileSet = tileSets[tilesetSelect.value].slice();
-
-  if (rotationsInput.checked) {
-    tileSet = tileSet.concat(getRotations(tileSet));
-  } else {
-    tileSet = tileSets[tilesetSelect.value].slice();
-  }
-
-  drawTileset(tileSet);
-});
-
-rotationsInput.addEventListener("change", () => {
-  if (rotationsInput.checked) {
-    tileSet = tileSet.concat(getRotations(tileSet));
-  } else {
-    tileSet = tileSets[tilesetSelect.value].slice();
-  }
-
+  tileSet = tileSet.concat(getRotations(tileSet));
   drawTileset(tileSet);
 });
 
@@ -56,7 +36,8 @@ function drawGrid(gridWidth, TILE_SIZE) {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
 
-  const tileWidth = grid[0][0].length;
+  //const tileWidth = grid[0][0].length;
+  const tileWidth = 3;
 
   canvas.width = gridWidth * TILE_SIZE;
   canvas.height = gridWidth * TILE_SIZE;

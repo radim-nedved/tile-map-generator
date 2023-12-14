@@ -94,7 +94,253 @@ const set2 = [
   ],
 ];
 
-const tileSets = [set1, set2, set3];
+const set3 = [
+  [
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+  ],
+  [
+    ["blue", "lightblue", "blue"],
+    ["blue", "lightblue", "blue"],
+    ["blue", "lightblue", "blue"],
+  ],
+  [
+    ["blue", "blue", "blue"],
+    ["blue", "white", "blue"],
+    ["blue", "blue", "blue"],
+  ],
+  [
+    ["blue", "lightblue", "blue"],
+    ["blue", "blue", "lightblue"],
+    ["blue", "blue", "blue"],
+  ],
+];
+
+const set4 = [
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "green", "darkgreen"],
+    ["green", "darkgreen", "darkgreen"],
+    ["green", "green", "darkgreen"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "green"],
+    ["darkgreen", "green", "green"],
+    ["darkgreen", "darkgreen", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "green"],
+    ["darkgreen", "darkgreen", "green"],
+    ["darkgreen", "darkgreen", "green"],
+  ],
+  [
+    ["green", "green", "darkgreen"],
+    ["green", "green", "darkgreen"],
+    ["green", "green", "darkgreen"],
+  ],
+  [
+    ["green", "green", "darkgreen"],
+    ["green", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "green"],
+    ["darkgreen", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["darkgreen", "darkgreen", "green"],
+    ["darkgreen", "darkgreen", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["green", "green", "darkgreen"],
+    ["green", "green", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["green", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+    ["darkgreen", "darkgreen", "darkgreen"],
+  ],
+  [
+    ["darkgreen", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+  ],
+  [
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+  ],
+  [
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+    ["blue", "blue", "blue"],
+  ],
+  [
+    ["blue", "blue", "blue"],
+    ["blue", "yellow", "yellow"],
+    ["blue", "yellow", "green"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "yellow", "yellow"],
+    ["green", "yellow", "blue"],
+  ],
+  [
+    ["blue", "yellow", "green"],
+    ["blue", "yellow", "green"],
+    ["blue", "yellow", "green"],
+  ],
+  [
+    ["gray", "gray", "gray"],
+    ["gray", "gray", "gray"],
+    ["gray", "gray", "gray"],
+  ],
+  [
+    ["gray", "gray", "gray"],
+    ["gray", "darkorange", "gray"],
+    ["gray", "gray", "gray"],
+  ],
+  [
+    ["green", "green", "gray"],
+    ["green", "green", "gray"],
+    ["green", "green", "gray"],
+  ],
+  [
+    ["green", "green", "gray"],
+    ["green", "green", "gray"],
+    ["gray", "gray", "gray"],
+  ],
+  [
+    ["green", "green", "gray"],
+    ["black", "black", "gray"],
+    ["green", "green", "gray"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["black", "black", "black"],
+    ["green", "green", "green"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["black", "green", "green"],
+    ["green", "black", "green"],
+  ],
+  [
+    ["green", "green", "green"],
+    ["green", "green", "green"],
+    ["green", "green", "gray"],
+  ],
+];
+
+const tileSets = [set1, set2, set3, set4];
 
 function getRotations(tileSet) {
   let rotatedTiles = [];

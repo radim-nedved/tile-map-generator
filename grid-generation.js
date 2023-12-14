@@ -1,14 +1,18 @@
-function generate(tileSet, gridWidth) {
+let gridWidth;
+
+function generate(tileSet, gridSize) {
   let grid = [];
-  for (let i = 0; i < gridWidth; i++) {
+  for (let i = 0; i < gridSize; i++) {
     grid.push([]);
   }
+
+  gridWidth = grid.length;
 
   placeTile(grid, tileSet, 0, 0, gridWidth);
   return grid;
 }
 
-function placeTile(grid, tileSet, x, y, gridWidth) {
+function placeTile(grid, tileSet, x, y) {
   if (y == gridWidth) {
     return true;
   }
